@@ -147,48 +147,48 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
-                color: themeColor,
+                color: Colors.black,
               ),
               title: Text(
                 "חיפוש",
                 style: TextStyle(
-                  color: themeColor,
+                  color: Colors.black,
                 ),
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.update,
-                color: themeColor,
+                color: Colors.black,
               ),
               title: Text(
                 "הסטוריה",
                 style: TextStyle(
-                  color: themeColor,
+                  color: Colors.black,
                 ),
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.favorite,
-                color: themeColor,
+                color: Colors.black,
               ),
               title: Text(
                 "מועדפים",
                 style: TextStyle(
-                  color: themeColor,
+                  color: Colors.black,
                 ),
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person_pin,
-                color: themeColor,
+                color: Colors.black,
               ),
               title: Text(
                 "אזור אישי",
                 style: TextStyle(
-                  color: themeColor,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -220,7 +220,7 @@ _createTopMenus(imageName, text, colorName) {
 _createBottomMenus(imageName, text, colorName) {
   return Container(
     margin: EdgeInsets.all(3),
-    padding: EdgeInsets.only(top: 4, bottom: 4),
+    padding: EdgeInsets.only(top: 6, bottom: 6),
     decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(5),
@@ -234,7 +234,7 @@ _createBottomMenus(imageName, text, colorName) {
           height: 40,
         ),
         SizedBox(
-          height: 8,
+          height: 3,
         ),
         Text(
           "$text",
