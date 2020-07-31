@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:single_screen/Common/jsonData.dart';
 
+
 class SubCategoryScreen extends StatefulWidget {
   @override
   _SubCategoryScreenState createState() => _SubCategoryScreenState();
@@ -11,7 +12,7 @@ class SubCategoryScreen extends StatefulWidget {
 class _SubCategoryScreenState extends State<SubCategoryScreen> {
   @override
   Widget build(BuildContext context) {
-
+    Color themeColor = Color.fromRGBO(160, 26, 18, 1);
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -56,16 +57,6 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                             height: 30,
                           ),
                         ),
-
-//                          GestureDetector(
-//                            child: Image.asset(
-//                              "images/location_icon.png",
-//                              width: 30,
-//                              height: 30,
-//
-//
-//                            ),
-//                          ),
                         Expanded(
                           child: Center(
                             child: Text(
@@ -77,9 +68,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                             ),
                           ),
                         ),
-                        IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.white), onPressed: (){
-                          Navigator.pop(context);
-                        })
+                        IconButton(icon: Icon(Icons.arrow_forward_ios,color: Colors.white), onPressed: (){})
                       ],
                     ),
                     SizedBox(
@@ -129,6 +118,71 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
           ),
         ],
       ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: themeColor,
+              ),
+              title: Text(
+                "ראשי",
+                style: TextStyle(
+                  color: themeColor,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              title: Text(
+                "חיפוש",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.update,
+                color: Colors.black,
+              ),
+              title: Text(
+                "הסטוריה",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.black,
+              ),
+              title: Text(
+                "מועדפים",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_pin,
+                color: Colors.black,
+              ),
+              title: Text(
+                "אזור אישי",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        )
     );
   }
 }

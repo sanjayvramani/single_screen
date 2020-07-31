@@ -108,34 +108,6 @@ class _HomePageState extends State<HomePage> {
                               hintText: 'מה תרצו פשוט למצוא'),
                         ),
                       )
-
-//                      Container(
-//                        width: MediaQuery.of(context).size.width,
-//                        height: 42,
-//                        padding: EdgeInsets.only(right: 8),
-//                        decoration: BoxDecoration(
-//                          borderRadius: BorderRadius.circular(6),
-//                          color: Colors.white,
-//                        ),
-//                        child: Row(
-//                          mainAxisAlignment: MainAxisAlignment.end,
-//                          children: <Widget>[
-//                            Text(
-//                              "מה תרצו פשוט למצוא",
-//                              style:
-//                                  TextStyle(color: Colors.grey, fontSize: 12),
-//                            ),
-//                            SizedBox(
-//                              width: 5,
-//                            ),
-//                            Icon(
-//                              Icons.search,
-//                              size: 20,
-//                              color: Colors.grey,
-//                            ),
-//                          ],
-//                        ),
-//                      )
                     ],
                   ),
                 ),
