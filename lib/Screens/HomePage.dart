@@ -155,7 +155,10 @@ class _HomePageState extends State<HomePage> {
                           Navigator.pushNamed(context, '/SubCategory');
                         },
                         child: _createBottomMenus(
-                            bottomMenuItems[index]["category_vector_image"],
+                            "images/" +
+                                bottomMenuItems[index]
+                                    ["category_vector_image"] +
+                                ".png",
                             bottomMenuItems[index]["category_name"],
                             bottomMenuItems[index]["category_background_color"]
                                 .replaceAll("#", "0xff")),
@@ -268,8 +271,8 @@ _createBottomMenus(imageName, text, colorName) {
       children: <Widget>[
         Image.asset(
           imageName,
-          width: 40,
-          height: 40,
+          width: 35,
+          height: 35,
         ),
         SizedBox(
           height: 3,
