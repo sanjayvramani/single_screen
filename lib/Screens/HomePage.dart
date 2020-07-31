@@ -99,7 +99,6 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                         ),
                         child: TextField(
-                          cursorColor: Colors.black,
                           textAlign: TextAlign.right,
                           decoration: InputDecoration(
                               suffixIcon: Icon(Icons.search,
@@ -113,54 +112,61 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 200,
-              child: GridView.count(
-                crossAxisCount: 4,
-                physics: NeverScrollableScrollPhysics(),
+            Expanded(
+              child: Column(
                 children: <Widget>[
-                  for (int i = 0; i < topMenuItems.length; i++) ...[
-                    _createTopMenus(
-                        "images/" +
-                            topMenuItems[i]["category_vector_image"] +
-                            ".png",
-                        topMenuItems[i]["category_name"],
-                        topMenuItems[i]["category_background_color"]
-                            .replaceAll("#", "0xff")),
-                  ]
+                  SizedBox(
+                    height: 200,
+                    child: GridView.count(
+                      crossAxisCount: 4,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: <Widget>[
+                        for (int i = 0; i < topMenuItems.length; i++) ...[
+                          _createTopMenus(
+                              "images/" +
+                                  topMenuItems[i]["category_vector_image"] +
+                                  ".png",
+                              topMenuItems[i]["category_name"],
+                              topMenuItems[i]["category_background_color"]
+                                  .replaceAll("#", "0xff")),
+                        ]
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        centerText,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: StaggeredGridView.countBuilder(
+                      crossAxisCount: 2,
+                      padding: EdgeInsets.only(top: 0),
+                      itemCount: bottomMenuItems.length,
+                      itemBuilder: (BuildContext context, int index) => InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/SubCategory');
+                        },
+                        child: _createBottomMenus(
+                            bottomMenuItems[index]["category_vector_image"],
+                            bottomMenuItems[index]["category_name"],
+                            bottomMenuItems[index]["category_background_color"]
+                                .replaceAll("#", "0xff")),
+                      ),
+                      staggeredTileBuilder: (int index) =>
+                          new StaggeredTile.fit(1),
+                    ),
+                  ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8, top: 10),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  centerText,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: StaggeredGridView.countBuilder(
-                crossAxisCount: 2,
-                padding: EdgeInsets.only(top: 0),
-                itemCount: bottomMenuItems.length,
-                itemBuilder: (BuildContext context, int index) => InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/SubCategory');
-                  },
-                  child: _createBottomMenus(
-                      bottomMenuItems[index]["category_vector_image"],
-                      bottomMenuItems[index]["category_name"],
-                      bottomMenuItems[index]["category_background_color"]
-                          .replaceAll("#", "0xff")),
-                ),
-                staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
-              ),
-            ),
+            )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
