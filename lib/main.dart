@@ -17,7 +17,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SubCategoryScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+        '/SubCategory': (context) => SubCategoryScreen(),
+      },
     );
   }
 }

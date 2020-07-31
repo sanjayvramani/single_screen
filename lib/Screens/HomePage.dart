@@ -49,11 +49,10 @@ class _HomePageState extends State<HomePage> {
                             onTap: () {
                               Fluttertoast.showToast(
                                   msg: "Your Location",
-                                  gravity:ToastGravity.BOTTOM ,
+                                  gravity: ToastGravity.BOTTOM,
                                   textColor: Colors.white,
                                   backgroundColor: Colors.black,
-                                  fontSize: 16.0
-                              );
+                                  fontSize: 16.0);
                             },
                             child: Image.asset(
                               "images/location_icon.png",
@@ -103,11 +102,11 @@ class _HomePageState extends State<HomePage> {
                           cursorColor: Colors.black,
                           textAlign: TextAlign.right,
                           decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.search,color: Colors.grey,size: 20),
+                              suffixIcon: Icon(Icons.search,
+                                  color: Colors.grey, size: 20),
                               border: InputBorder.none,
                               hintText: 'מה תרצו פשוט למצוא'),
                         ),
-
                       )
 
 //                      Container(
@@ -177,12 +176,16 @@ class _HomePageState extends State<HomePage> {
                 crossAxisCount: 2,
                 padding: EdgeInsets.only(top: 0),
                 itemCount: bottomMenuItems.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    _createBottomMenus(
-                        bottomMenuItems[index]["category_vector_image"],
-                        bottomMenuItems[index]["category_name"],
-                        bottomMenuItems[index]["category_background_color"]
-                            .replaceAll("#", "0xff")),
+                itemBuilder: (BuildContext context, int index) => InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, '/SubCategory');
+                  },
+                  child: _createBottomMenus(
+                      bottomMenuItems[index]["category_vector_image"],
+                      bottomMenuItems[index]["category_name"],
+                      bottomMenuItems[index]["category_background_color"]
+                          .replaceAll("#", "0xff")),
+                ),
                 staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
               ),
             ),
