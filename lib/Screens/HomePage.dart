@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               Fluttertoast.showToast(
-                                  msg: "Your Location",
+                                  msg: "You tap on Location",
                                   gravity: ToastGravity.BOTTOM,
                                   textColor: Colors.white,
                                   backgroundColor: Colors.black,
@@ -60,16 +60,6 @@ class _HomePageState extends State<HomePage> {
                               height: 30,
                             ),
                           ),
-
-//                          GestureDetector(
-//                            child: Image.asset(
-//                              "images/location_icon.png",
-//                              width: 30,
-//                              height: 30,
-//
-//
-//                            ),
-//                          ),
                           Expanded(
                             child: Center(
                               child: Text(
@@ -81,10 +71,20 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          Image.asset(
-                            "images/sos_icon.png",
-                            width: 50,
-                            height: 50,
+                          GestureDetector(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "You tap on SOS",
+                                  gravity: ToastGravity.BOTTOM,
+                                  textColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                  fontSize: 16.0);
+                            },
+                            child: Image.asset(
+                              "images/sos_icon.png",
+                              width: 50,
+                              height: 50,
+                            ),
                           ),
                         ],
                       ),
@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.only(top: 0),
                 itemCount: bottomMenuItems.length,
                 itemBuilder: (BuildContext context, int index) => InkWell(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, '/SubCategory');
                   },
                   child: _createBottomMenus(
