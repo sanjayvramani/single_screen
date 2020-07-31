@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:single_screen/SubCategory.dart';
 
 import 'Screens/HomePage.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: SubCategoryScreen(),
     );
   }
 }

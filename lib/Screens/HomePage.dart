@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:single_screen/Common/Constants.dart';
 import 'package:single_screen/Common/jsonData.dart';
 
@@ -44,11 +45,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Row(
                         children: <Widget>[
-                          Image.asset(
-                            "images/location_icon.png",
-                            width: 30,
-                            height: 30,
+                          GestureDetector(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "Your Location",
+                                  gravity:ToastGravity.BOTTOM ,
+                                  textColor: Colors.white,
+                                  backgroundColor: Colors.black,
+                                  fontSize: 16.0
+                              );
+                            },
+                            child: Image.asset(
+                              "images/location_icon.png",
+                              width: 30,
+                              height: 30,
+                            ),
                           ),
+
+//                          GestureDetector(
+//                            child: Image.asset(
+//                              "images/location_icon.png",
+//                              width: 30,
+//                              height: 30,
+//
+//
+//                            ),
+//                          ),
                           Expanded(
                             child: Center(
                               child: Text(
@@ -71,32 +93,50 @@ class _HomePageState extends State<HomePage> {
                         height: 10,
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width,
                         height: 42,
                         padding: EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: Colors.white,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              "מה תרצו פשוט למצוא",
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.search,
-                              size: 20,
-                              color: Colors.grey,
-                            ),
-                          ],
+                        child: TextField(
+                          cursorColor: Colors.black,
+                          textAlign: TextAlign.right,
+                          decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.search,color: Colors.grey,size: 20),
+                              border: InputBorder.none,
+                              hintText: 'מה תרצו פשוט למצוא'),
                         ),
+
                       )
+
+//                      Container(
+//                        width: MediaQuery.of(context).size.width,
+//                        height: 42,
+//                        padding: EdgeInsets.only(right: 8),
+//                        decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(6),
+//                          color: Colors.white,
+//                        ),
+//                        child: Row(
+//                          mainAxisAlignment: MainAxisAlignment.end,
+//                          children: <Widget>[
+//                            Text(
+//                              "מה תרצו פשוט למצוא",
+//                              style:
+//                                  TextStyle(color: Colors.grey, fontSize: 12),
+//                            ),
+//                            SizedBox(
+//                              width: 5,
+//                            ),
+//                            Icon(
+//                              Icons.search,
+//                              size: 20,
+//                              color: Colors.grey,
+//                            ),
+//                          ],
+//                        ),
+//                      )
                     ],
                   ),
                 ),
