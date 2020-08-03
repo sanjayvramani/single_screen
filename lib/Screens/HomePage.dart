@@ -1,4 +1,4 @@
-import 'package:demo_app/AppLocalizations.dart';
+import 'package:single_screen/AppLocalizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,9 +1,12 @@
-import 'package:demo_app/AppLocalizations.dart';
+import 'package:single_screen/AppLocalizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import '../Screens/Subcategory.dart';
+/*import '../Screens/Subcategory.dart';
 
-import '../Screens/HomePage.dart';
+import './Screens/HomePage.dart';*/
+import 'Screens/Subcategory.dart';
+
+import 'Screens/HomePage.dart';
 
 void main() {
   runApp(MyApp());
