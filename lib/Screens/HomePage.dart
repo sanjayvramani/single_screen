@@ -1,3 +1,4 @@
+import 'package:demo_app/AppLocalizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,283 +6,217 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:single_screen/Common/Constants.dart';
 import 'package:single_screen/Common/jsonData.dart';
-
+import '../Common/jsonSubcategoryData.dart';
+import '../NavigationBar/HomeHeading.dart';
+import 'dart:io';
+import '../NavigationBar/BottomNavigationBar.dart';
+import 'SubCategory.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
+
+
 class _HomePageState extends State<HomePage> {
   Color themeColor = Color.fromRGBO(160, 26, 18, 1);
+  bool isHerbrew=true;
+  int selectedBottomNavigation=0;
+
+  List<dynamic> lstBottomMenu=List<dynamic>();
+  List<dynamic> lstTopMenu=List<dynamic>();
+      changeSelection(int value)
+  {
+    setState(() {
+      selectedBottomNavigation=value;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //lstBottomMenu=bottomMenuItems;
+    //lstTopMenu=topMenuItems;
+    if(Platform.localeName.startsWith("he")) {
+
+      //Top Menu
+      for (int i = 0; i < topMenuItems.length; i = i + 4) {
+        lstTopMenu.add(topMenuItems[i + 3]);
+        lstTopMenu.add(topMenuItems[i + 2]);
+        lstTopMenu.add(topMenuItems[i + 1]);
+        lstTopMenu.add(topMenuItems[i]);
+      }
+
+     // Bottom Menu
+      if (bottomMenuItems.length % 2 == 0) {
+        for (int i = 0; i < bottomMenuItems.length; i = i + 2) {
+          lstBottomMenu.add(bottomMenuItems[i + 1]);
+          lstBottomMenu.add(bottomMenuItems[i]);
+        }
+      }
+      else {
+        for (int i = 1; i < bottomMenuItems.length; i = i + 2) {
+          lstBottomMenu.add(bottomMenuItems[i]);
+          lstBottomMenu.add(bottomMenuItems[i - 1]);
+        }
+
+        lstBottomMenu.add(bottomMenuItems[bottomMenuItems.length - 1]);
+      }
+    }
+    else
+      {
+        lstTopMenu=topMenuItems;
+        lstBottomMenu=bottomMenuItems;
+      }
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    String appbarTitle = AppLocalizations.of(context).translate("title");
+
+    var topMenu = GridView.builder(
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 2.0,
+        crossAxisCount: 4
+    ),
+        itemCount: lstTopMenu.length,
+        itemBuilder: (context,index){
+          return _createTopMenus(index);
+        });
+
+    var freeSpace = Padding(
+      padding: const EdgeInsets.only(right: 8, top: 10),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          AppLocalizations.of(context).translate("home_area"),
+        ),
+      ),
+    );
+
+    var bottomMenu = Expanded(
+      child: GridView.builder(
+         // physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 2.5,
+              crossAxisCount: 2
+          ),
+          itemCount: lstBottomMenu.length,
+          itemBuilder: (context,index){
+            return _createBottomMenus(index);
+          }),
+    );
+
+   /* var bottomMenu = Expanded(
+      child: StaggeredGridView.countBuilder(crossAxisCount: 2,
+          itemCount: lstBottomMenu.length,
+          itemBuilder: (context,index){
+            return _createBottomMenus(index);
+          },
+          staggeredTileBuilder: (int index) =>
+          new StaggeredTile.fit(1)),
+    );*/
+
     return Scaffold(
         body: Column(
           children: <Widget>[
-            Stack(
+            getAppBar(context,appbarTitle),
+            Expanded(child: Column(
               children: <Widget>[
-                Image.asset(
-                  "images/appbar_background.png",
-                  fit: BoxFit.fill,
-                  height: 160,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(left: 12, right: 12, bottom: 7),
-                  decoration: BoxDecoration(
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 2.0,
-                        spreadRadius: 3,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: MediaQuery.of(context).padding.top + 20,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: () {
-                              Fluttertoast.showToast(
-                                  msg: "You tap on Location",
-                                  gravity: ToastGravity.BOTTOM,
-                                  textColor: Colors.white,
-                                  backgroundColor: Colors.black,
-                                  fontSize: 16.0);
-                            },
-                            child: Image.asset(
-                              "images/location_icon.png",
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
-                          Expanded(
-                            child: Center(
-                              child: Text(
-                                "Allinfo",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Fluttertoast.showToast(
-                                  msg: "You tap on SOS",
-                                  gravity: ToastGravity.BOTTOM,
-                                  textColor: Colors.white,
-                                  backgroundColor: Colors.black,
-                                  fontSize: 16.0);
-                            },
-                            child: Image.asset(
-                              "images/sos_icon.png",
-                              width: 50,
-                              height: 50,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 42,
-                        padding: EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          color: Colors.white,
-                        ),
-                        child: TextField(
-                          textAlign: TextAlign.right,
-                          decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.search,
-                                  color: Colors.grey, size: 20),
-                              border: InputBorder.none,
-                              hintText: 'מה תרצו פשוט למצוא'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                topMenu,
+                freeSpace,
+                SizedBox(height: 10,),
+                bottomMenu
               ],
+            ))
+          ],
+        ),
+        bottomNavigationBar: getOriginalBottomNavigationBar(context,themeColor));
+  }
+
+
+  Widget _createTopMenus(int index) {
+    var map = lstTopMenu[index];
+    var lst = map["category_image"].toString().split("/");
+    List<dynamic>lstSubcategory=List<dynamic>();
+
+    subcategory.forEach((element) {
+      if(element["category_id"]==map["category_id"])
+        {
+          lstSubcategory.add(element);
+        }
+    });
+
+    return InkWell(
+      onTap: (){
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>SubCategoryScreen(map,lstSubcategory)));
+      },
+
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              "assets/images/categories/"+ map["category_vector_image"]+".png",
+              width: 40,
+              height: 40,
             ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 200,
-                    child: GridView.count(
-                      crossAxisCount: 4,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: <Widget>[
-                        for (int i = 0; i < topMenuItems.length; i++) ...[
-                          _createTopMenus(
-                              "images/" +
-                                  topMenuItems[i]["category_vector_image"] +
-                                  ".png",
-                              topMenuItems[i]["category_name"],
-                              topMenuItems[i]["category_background_color"]
-                                  .replaceAll("#", "0xff")),
-                        ]
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 10),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        centerText,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                    child: StaggeredGridView.countBuilder(
-                      crossAxisCount: 2,
-                      padding: EdgeInsets.only(top: 0),
-                      itemCount: bottomMenuItems.length,
-                      itemBuilder: (BuildContext context, int index) => InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/SubCategory');
-                        },
-                        child: _createBottomMenus(
-                            "images/" +
-                                bottomMenuItems[index]
-                                    ["category_vector_image"] +
-                                ".png",
-                            bottomMenuItems[index]["category_name"],
-                            bottomMenuItems[index]["category_background_color"]
-                                .replaceAll("#", "0xff")),
-                      ),
-                      staggeredTileBuilder: (int index) =>
-                          new StaggeredTile.fit(1),
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              map["category_name"+(isHerbrew?"":"_en")],
+              style: TextStyle(color: Color(int.parse(map["category_background_color"].replaceAll("#","0xff"))), fontSize: 12),
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: themeColor,
-              ),
-              title: Text(
-                "ראשי",
-                style: TextStyle(
-                  color: themeColor,
-                ),
-              ),
+      );
+  }
+
+  _createBottomMenus(int index) {
+    var map = lstBottomMenu[index];
+    List<dynamic>lstSubcategory=List<dynamic>();
+    var lst = map["category_image"].toString().split("/");
+
+    subcategory.forEach((element) {
+      if(element["category_id"]==map["category_id"])
+      {
+        lstSubcategory.add(element);
+      }
+    });
+    return InkWell(
+      onTap: (){
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>SubCategoryScreen(map,lstSubcategory)));
+      },
+      child: Container(
+        margin: EdgeInsets.all(3),
+        padding: EdgeInsets.only(top: 6, bottom: 6),
+        decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.grey[300])),
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              "assets/images/categories/"+ map["category_vector_image"]+".png",
+              width: 35,
+              height: 35,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              title: Text(
-                "חיפוש",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
+            SizedBox(
+              height: 3,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.update,
-                color: Colors.black,
-              ),
-              title: Text(
-                "הסטוריה",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite,
-                color: Colors.black,
-              ),
-              title: Text(
-                "מועדפים",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_pin,
-                color: Colors.black,
-              ),
-              title: Text(
-                "אזור אישי",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            Text(
+              map["category_name"+(isHerbrew?"":"_en")],
+              style: TextStyle(color: Color(int.parse(map["category_background_color"].replaceAll("#","0xff"))), fontSize: 12),
+            )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
-_createTopMenus(imageName, text, colorName) {
-  return Column(
-    children: <Widget>[
-      Image.asset(
-        imageName,
-        width: 40,
-        height: 40,
-      ),
-      SizedBox(
-        height: 8,
-      ),
-      Text(
-        "$text",
-        style: TextStyle(color: Color(int.parse(colorName)), fontSize: 12),
-      )
-    ],
-  );
-}
-
-_createBottomMenus(imageName, text, colorName) {
-  return Container(
-    margin: EdgeInsets.all(3),
-    padding: EdgeInsets.only(top: 6, bottom: 6),
-    decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Colors.grey[300])),
-    child: Column(
-      children: <Widget>[
-        Image.asset(
-          imageName,
-          width: 35,
-          height: 35,
-        ),
-        SizedBox(
-          height: 3,
-        ),
-        Text(
-          "$text",
-          style: TextStyle(color: Color(int.parse(colorName)), fontSize: 12),
-        )
-      ],
-    ),
-  );
-}

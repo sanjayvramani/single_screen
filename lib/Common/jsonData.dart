@@ -318,8 +318,7 @@ var bottomMenuItems = [
     "category_id": "126",
     "category_name": "מורים וסטודנטים",
     "category_name_en": "Teachers and students",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/5885f53ccfb99.png",
+    "category_image":"http://allinfo.co.il/all_info/admin/categoryImage/5885f53ccfb99.png",
     "category_vector_image": "category_teachers_and_students",
     "category_background_color": "#48059E",
     "show_date": "2018-02-21",
@@ -330,8 +329,7 @@ var bottomMenuItems = [
     "category_id": "116",
     "category_name": "מיסטיקה",
     "category_name_en": "Mysticism",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/5781295bb7d90.png",
+    "category_image":"http://allinfo.co.il/all_info/admin/categoryImage/5781295bb7d90.png",
     "category_vector_image": "category_mysticism",
     "category_background_color": "#5E005A",
     "show_date": "2018-01-19",
@@ -342,8 +340,7 @@ var bottomMenuItems = [
     "category_id": "113",
     "category_name": "מקצועות חופשיים",
     "category_name_en": "Professionals ",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/5780a01a66772.png",
+    "category_image":"http://allinfo.co.il/all_info/admin/categoryImage/5780a01a66772.png",
     "category_vector_image": "category_all_professions",
     "category_background_color": "#960404",
     "show_date": "2018-02-05",
@@ -354,8 +351,7 @@ var bottomMenuItems = [
     "category_id": "109",
     "category_name": "משחקים וספורט",
     "category_name_en": "Sports and games",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/578166ff97896.png",
+    "category_image":"http://allinfo.co.il/all_info/admin/categoryImage/578166ff97896.png",
     "category_vector_image": "category_sports_and_games",
     "category_background_color": "#E82AE3",
     "show_date": "2018-02-16",
@@ -366,8 +362,7 @@ var bottomMenuItems = [
     "category_id": "95",
     "category_name": "משלוחים",
     "category_name_en": "Delivery services",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/576fe46da7ac1.png",
+    "category_image": "http://allinfo.co.il/all_info/admin/categoryImage/576fe46da7ac1.png",
     "category_vector_image": "category_delivery",
     "category_background_color": "#F95326",
     "show_date": "2018-01-29",
@@ -378,8 +373,7 @@ var bottomMenuItems = [
     "category_id": "88",
     "category_name": "נדל״ן",
     "category_name_en": "Real estate",
-    "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/576fd1fa87857.png",
+    "category_image":"http://allinfo.co.il/all_info/admin/categoryImage/576fd1fa87857.png",
     "category_vector_image": "category_real_estate",
     "category_background_color": "#0968B5",
     "show_date": "2018-01-17",
@@ -511,7 +505,7 @@ var bottomMenuItems = [
     "category_name": "תקשורת ומחשבים",
     "category_name_en": "Communication and computers",
     "category_image":
-        "http://allinfo.co.il/all_info/admin/categoryImage/5770037877bd2.png",
+    "http://allinfo.co.il/all_info/admin/categoryImage/5770037877bd2.png",
     "category_vector_image": "category_communication_and_computers",
     "category_background_color": "#F05A28",
     "show_date": "2018-01-25",
